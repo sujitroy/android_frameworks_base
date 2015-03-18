@@ -23,6 +23,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Path;
@@ -47,6 +48,7 @@ public class BatteryMeterDrawableBase extends Drawable {
     public static final int BATTERY_STYLE_PORTRAIT = 0;
     public static final int BATTERY_STYLE_CIRCLE = 1;
     public static final int BATTERY_STYLE_TEXT = 2;
+    public static final int BATTERY_STYLE_DOTTED_CIRCLE = 3;
 
     protected final Context mContext;
     protected final Paint mFramePaint;
@@ -100,6 +102,8 @@ public class BatteryMeterDrawableBase extends Drawable {
     private final Path mShapePath = new Path();
     private final Path mOutlinePath = new Path();
     private final Path mTextPath = new Path();
+
+    private DashPathEffect mPathEffect;
 
     public BatteryMeterDrawableBase(Context context, int frameColor) {
         // Portrait is the default drawable style
@@ -169,6 +173,8 @@ public class BatteryMeterDrawableBase extends Drawable {
         mPowersavePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPowersavePaint.setColor(mPlusPaint.getColor());
         mPowersavePaint.setStyle(Style.STROKE);
+
+        mPathEffect = new DashPathEffect(new float[]{3,2},0);
 
         mIntrinsicWidth = context.getResources().getDimensionPixelSize(R.dimen.battery_width);
         mIntrinsicHeight = context.getResources().getDimensionPixelSize(R.dimen.battery_height);
@@ -319,7 +325,7 @@ public class BatteryMeterDrawableBase extends Drawable {
 
     @Override
     public void draw(Canvas c) {
-        if (mMeterStyle == BATTERY_STYLE_CIRCLE) {
+        if (mMeterStyle == BATTERY_STYLE_CIRCLE || mMeterStyle == BATTERY_STYLE_DOTTED_CIRCLE) {
             drawCircle(c);
         } else {
             drawRectangle(c);
@@ -339,6 +345,12 @@ public class BatteryMeterDrawableBase extends Drawable {
 
         mBatteryPaint.setStrokeWidth(strokeWidth);
         mBatteryPaint.setStyle(Paint.Style.STROKE);
+
+        if (mMeterStyle == BATTERY_STYLE_DOTTED_CIRCLE) {
+            mBatteryPaint.setPathEffect(mPathEffect);
+        } else {
+            mBatteryPaint.setPathEffect(null);
+        }
 
         mPowersavePaint.setStrokeWidth(strokeWidth);
 
