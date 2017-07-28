@@ -7510,7 +7510,16 @@ public final class Settings {
         public static final String UNSAFE_VOLUME_MUSIC_ACTIVE_MS = "unsafe_volume_music_active_ms";
 
         /**
-         * This preference enables notification display on the lockscreen.
+         * Force authorize Substratum (or equivalent) frontend calling packages by ThemeInterfacer
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String FORCE_AUTHORIZE_SUBSTRATUM_PACKAGES = "force_authorize_substratum_packages";
+
+        /**
+         * 0 (default) Auto battery saver suggestion has not been suppressed. 1) it has been
+         * suppressed.
+ 	 * This preference enables notification display on the lockscreen.
          * @hide
          */
         public static final String LOCK_SCREEN_SHOW_NOTIFICATIONS =
