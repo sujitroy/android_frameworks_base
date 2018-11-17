@@ -4671,6 +4671,26 @@ public final class Settings {
         public static final Validator SHOW_FOURG_VALIDATOR = BOOLEAN_VALIDATOR;
 
         /**
+         * Control how to handle the display cutout
+         * @hide
+         */
+        public static final String DISPLAY_CUTOUT_MODE = "display_cutout_mode";
+
+        /** @hide */
+        private static final Validator DISPLAY_CUTOUT_MODE_VALIDATOR = new
+                SettingsValidators.InclusiveIntegerRangeValidator(0, 2);
+
+        /**
+         * Control how to handle the display cutout
+         * @hide
+         */
+        public static final String STOCK_STATUSBAR_IN_HIDE = "stock_statusbar_in_hide";
+
+        /** @hide */
+        private static final Validator STOCK_STATUSBAR_IN_HIDE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4743,6 +4763,8 @@ public final class Settings {
             QS_LAYOUT_COLUMNS,
             QS_TILE_TITLE_VISIBILITY,
             QS_QUICKBAR_COLUMNS,
+            DISPLAY_CUTOUT_MODE,
+            STOCK_STATUSBAR_IN_HIDE,
         };
 
         /**
@@ -4871,6 +4893,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_TILE_TITLE_VISIBILITY);
             PRIVATE_SETTINGS.add(QS_QUICKBAR_COLUMNS);
             PRIVATE_SETTINGS.add(SHOW_FOURG);
+            PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_MODE);
+            PRIVATE_SETTINGS.add(STOCK_STATUSBAR_IN_HIDE);
         }
 
         /**
@@ -4976,6 +5000,8 @@ public final class Settings {
             VALIDATORS.put(QS_TILE_TITLE_VISIBILITY, QS_TILE_TITLE_VISIBILITY_VALIDATOR);
             VALIDATORS.put(QS_QUICKBAR_COLUMNS, QS_QUICKBAR_COLUMNS_VALIDATOR);
             VALIDATORS.put(SHOW_FOURG, SHOW_FOURG_VALIDATOR);
+            VALIDATORS.put(DISPLAY_CUTOUT_MODE, DISPLAY_CUTOUT_MODE_VALIDATOR);
+            VALIDATORS.put(STOCK_STATUSBAR_IN_HIDE, STOCK_STATUSBAR_IN_HIDE_VALIDATOR);
         }
 
         /**
