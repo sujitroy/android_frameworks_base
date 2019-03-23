@@ -16,6 +16,7 @@ cc_library_shared {
         "-Wno-non-virtual-dtor",
         "-Wno-maybe-uninitialized",
         "-Wno-parentheses",
+        "-Wno-unused-function",
 
         "-DGL_GLEXT_PROTOTYPES",
         "-DEGL_EGLEXT_PROTOTYPES",
@@ -33,7 +34,7 @@ cc_library_shared {
         //"-DANDROID_ENABLE_LINEAR_BLENDING",
     ],
 
-    cppflags: ["-Wno-conversion-null"],
+    cppflags: ["-Wno-conversion-null", "-Wno-unused-function"],
     cpp_std: "c++17",
 
     srcs: [
