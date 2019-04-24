@@ -49,6 +49,7 @@ public class BatteryMeterDrawableBase extends Drawable {
     public static final int BATTERY_STYLE_CIRCLE = 1;
     public static final int BATTERY_STYLE_TEXT = 2;
     public static final int BATTERY_STYLE_DOTTED_CIRCLE = 3;
+    public static final int BATTERY_STYLE_Q = 4;
 
     protected final Context mContext;
     protected final Paint mFramePaint;
@@ -228,6 +229,10 @@ public class BatteryMeterDrawableBase extends Drawable {
         postInvalidate();
     }
 
+    public int getMeterStyle() {
+        return mMeterStyle;
+    }
+
     // an approximation of View.postInvalidate()
     protected void postInvalidate() {
         unscheduleSelf(this::invalidateSelf);
@@ -264,7 +269,7 @@ public class BatteryMeterDrawableBase extends Drawable {
         mWarningTextHeight = -mWarningTextPaint.getFontMetrics().ascent;
 
         mIntrinsicHeight = mContext.getResources().getDimensionPixelSize(R.dimen.battery_height);
-        mIntrinsicWidth = mMeterStyle == BATTERY_STYLE_PORTRAIT ?
+        mIntrinsicWidth = mMeterStyle == BATTERY_STYLE_PORTRAIT || mMeterStyle == BATTERY_STYLE_Q ?
                 mContext.getResources().getDimensionPixelSize(R.dimen.battery_width) :
                 mContext.getResources().getDimensionPixelSize(R.dimen.battery_height);
     }
