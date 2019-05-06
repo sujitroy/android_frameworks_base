@@ -296,9 +296,8 @@ public class BatteryMeterView extends LinearLayout implements
             CharSequence mChargeIndicator =
                     mCharging && getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT
                     ? (bolt + " ") : "";
-            mBatteryPercentView.setText(mChargeIndicator +
-                    NumberFormat.getPercentInstance().format(mLevel / 100f));
-            mBatteryPercentView.setTypeface(tf);
+            mBatteryPercentView.setText(mChargeIndicator + NumberFormat.getPercentInstance().format(mLevel / 100f).replace('\u00A0',' ').replace('\u2007',' ').replace('\u202F',' ').replace('\u2060',' ').replace(" ",""));
+			mBatteryPercentView.setTypeface(tf);
         }
     }
 
@@ -345,9 +344,7 @@ public class BatteryMeterView extends LinearLayout implements
         if (mBatteryPercentView != null) {
             final Resources res = getContext().getResources();
             final int startPadding = res.getDimensionPixelSize(R.dimen.battery_level_padding_start);
-            mBatteryPercentView.setPaddingRelative(
-                    getMeterStyle() == BatteryMeterDrawableBase.BATTERY_STYLE_TEXT ? 0 : startPadding,
-                    0, 0, 0);
+            mBatteryPercentView.setPaddingRelative(startPadding, 0, (mDrawable.getMeterStyle() != BatteryMeterDrawableBase.BATTERY_STYLE_TEXT) ? startPadding : 0, 0);
         }
     }
 
