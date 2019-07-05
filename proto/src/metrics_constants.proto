@@ -6505,5 +6505,10 @@ message MetricsEvent {
 
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
+
+    // CustomSettings constant
+
+    CUSTOM_SETTINGS = 1554;
+    CUSTOM_QUICK_TILES = 1700;
   }
 }
