@@ -65,7 +65,6 @@ public class BatteryMeterDrawableBase extends Drawable {
     protected float mButtonHeightFraction;
 
     private int mLevel = -1;
-    private int mMeterStyle;
     private boolean mCharging;
     private boolean mPowerSaveEnabled;
     protected boolean mPowerSaveAsColorError = true;
@@ -112,13 +111,7 @@ public class BatteryMeterDrawableBase extends Drawable {
     private DashPathEffect mPathEffect;
 
     public BatteryMeterDrawableBase(Context context, int frameColor) {
-        // Portrait is the default drawable style
-        this(context, frameColor, BATTERY_STYLE_PORTRAIT);
-    }
-
-    public BatteryMeterDrawableBase(Context context, int frameColor, int style) {
         mContext = context;
-        mMeterStyle = style;
         final Resources res = context.getResources();
         TypedArray levels = res.obtainTypedArray(R.array.batterymeter_color_levels);
         TypedArray colors = res.obtainTypedArray(R.array.batterymeter_color_values);
