@@ -40,4 +40,6 @@
     <bool name="config_display_volte">true</bool>
 
     <bool name="config_audioPanelOnLeftSide">false</bool>
+    <!-- Allow devices to use unordinary cutout overlays -->
+    <bool name="config_customCutout">false</bool>
 </resources>
